@@ -1,0 +1,42 @@
+<div class="header">
+    Services
+</div>
+
+<div class="content">
+
+    <div ng-repeat="services in $ctrl.servers track by $index">
+
+        <div class="block">
+            <i class="fa fa-server"></i>
+            {{ '{{ services[0].server }} ({{ services.length }}):' }}
+        </div>
+
+        <table>
+
+            <thead>
+            <tr>
+                <th width="14px"></th>
+                <th width="150px">Name</th>
+                <th>Class</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="service in services track by $index">
+                <td>
+                    <i class="fa" ng-class="{'fa-play': (service.pid > 0), 'fa-stop': (service.pid === null && service.mode !== 'DISABLE'), 'fa-ban': (service.mode === 'DISABLE')}"></i>
+                </td>
+                <td>{{ '{{ service.name }}' }}</td>
+                <td>{{ '{{ service.class }}' }}</td>
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="block" ng-hide="$ctrl.serversCount > 0">
+        <i class="fa fa-warning"></i>
+        No services run.
+    </div>
+
+</div>

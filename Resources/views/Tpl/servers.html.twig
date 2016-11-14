@@ -1,0 +1,33 @@
+<div class="header">
+    Servers
+</div>
+
+<div class="content">
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th width="150px">Ip</th>
+            <th width="80px">Env</th>
+            <th>Version</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="server in $ctrl.servers track by $index">
+            <td>{{ '{{ server.name }}' }}</td>
+            <td>{{ '{{ server.ip }}' }}</td>
+            <td>{{ '{{ server.env }}' }}</td>
+            <td>{{ '{{ server.version }}' }}</td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <div class="block" ng-hide="$ctrl.servers.length > 0">
+        <i class="fa fa-warning"></i>
+        No servers run.
+    </div>
+
+</div>

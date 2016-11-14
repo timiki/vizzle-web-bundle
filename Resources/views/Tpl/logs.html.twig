@@ -1,0 +1,47 @@
+<div class="header">
+    Logs
+</div>
+
+{#<table class="array"> <tr ng-repeat="var in $ctrl.array track by $index"> <td>{{ $index }}</td> <td>{{ var }}</td> </tr> </table>#}
+
+
+
+
+<div class="content">
+
+    <table class="logs">
+
+        <thead>
+        <tr>
+            <th width="130px">Level</th>
+            <th width="180px">Server</th>
+            <th>Message</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="log in $ctrl.logs track by $index">
+            <td>
+                {{ '{{ log.levelName }}' }}
+                <div class="info">
+                    {{ '{{ log.datetime }}' }}
+                </div>
+            </td>
+            <td>{{ '{{ log.server }}' }}</td>
+            <td>
+                {{ '{{ log.message }}' }}
+                <br>
+                <span class="link" ng-hide="$ctrl.showDetails[log.id]" ng-click="$ctrl.showDetails[log.id] = true">Show details</span>
+                <span class="link" ng-show="$ctrl.showDetails[log.id]" ng-click="$ctrl.showDetails[log.id] = false">Hide details</span>
+                <dump var="log" ng-if="$ctrl.showDetails[log.id]"></dump>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <div class="block" ng-hide="$ctrl.logs.length > 0">
+        <i class="fa fa-warning"></i>
+        No logs found.
+    </div>
+
+</div>

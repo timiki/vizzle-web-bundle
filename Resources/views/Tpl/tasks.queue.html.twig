@@ -1,0 +1,124 @@
+<div class="header">
+    Task / Queue
+</div>
+
+<div class="content">
+
+    <div class="tabs">
+        <a ui-sref="tasksQueue" ui-sref-active="active" class="tab">Queue</a>
+    </div>
+
+    <div ng-show="$ctrl.stat.length > 0">
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.stat.length > 0 ? $ctrl.stat[$ctrl.stat.length - 1].total : "N/A" }}' }}</div>
+            <div class="title">Total</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.stat.length > 0 ? $ctrl.stat[$ctrl.stat.length - 1].wait : "N/A" }}' }}</div>
+            <div class="title">Wait</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.stat.length > 0 ? $ctrl.stat[$ctrl.stat.length - 1].run : "N/A" }}' }}</div>
+            <div class="title">Run</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.stat.length > 0 ? $ctrl.stat[$ctrl.stat.length - 1].error : "N/A" }}' }}</div>
+            <div class="title">Error</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">
+                {{ '{{ $ctrl.aTaskMemory || "N/A" }}' }}
+            </div>
+            <div class="title" title="Average use memory one run task">Task memory (Mb)</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">
+                {{ '{{ $ctrl.aTasksMemory || "N/A" }}' }}
+            </div>
+            <div class="title" title="Average use memory run tasks">Total memory (Mb)</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.stat.length > 0 ? $ctrl.stat[$ctrl.stat.length - 1].aWaitTime : "N/A" }}' }}</div>
+            <div class="title" title="Average time wait task to execute">Wait (Sec)</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.stat.length > 0 ? $ctrl.stat[$ctrl.stat.length - 1].aExecutingTime : "N/A" }}' }}</div>
+            <div class="title" title="Average time executing task">Execute (Sec)</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.taskPerSec || "N/A" }}' }}</div>
+            <div class="title" title="Average tasks per second">Task/Sec</div>
+        </div>
+
+    </div>
+
+    <div ng-show="$ctrl.stat.length > 0">
+
+        <div class="panel">
+            <div class="title">Tasks queue</div>
+            <div class="content">
+                <div id="chart-total" class="chart"></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="title">Average exiting time</div>
+            <div class="content">
+                <div id="chart-executing" class="chart"></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="title">Average wait time to execute</div>
+            <div class="content">
+                <div id="chart-wait" class="chart"></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="title">Average memory use</div>
+            <div class="content">
+                <div id="chart-memory" class="chart"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th width="80px">#</th>
+            <th width="80px">Status</th>
+            <th>Task</th>
+            <th>Server</th>
+            <th width="80px">Priority</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="task in $ctrl.tasks track by $index">
+            <td>{{ '{{ task.id }}' }}</td>
+            <td>{{ '{{ task.status }}' }}</td>
+            <td>{{ '{{ task.task }}' }}</td>
+            <td>{{ '{{ task.server }}' }}</td>
+            <td>{{ '{{ task.priority }}' }}</td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <div class="block" ng-hide="$ctrl.tasks.length > 0">
+        <i class="fa fa-warning"></i>
+        No tasks in queue.
+    </div>
+
+</div>

@@ -1,0 +1,60 @@
+<div class="header">
+    Schedule
+</div>
+
+<div class="content">
+
+    <div>
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.schedulesTotal }}' }}</div>
+            <div class="title">Total</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.schedulesEnabled }}' }}</div>
+            <div class="title">Enabled</div>
+        </div>
+
+        <div class="metric">
+            <div class="value">{{ '{{ $ctrl.schedulesDisabled }}' }}</div>
+            <div class="title">Disabled</div>
+        </div>
+
+    </div>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th width="14px"></th>
+            <th width="14px"></th>
+            <th>Name</th>
+            <th width="150px">Cron</th>
+            <th>Task / Cmd</th>
+            <th width="80px">Priority</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="schedule in $ctrl.schedules track by $index">
+            <td>
+                <i class="fa" ng-class="{'fa-stop': !schedule.enabled, 'fa-play': schedule.enabled}"></i>
+            </td>
+            <td>
+                <i class="fa" ng-class="{'fa-tasks': (schedule.type === 'task'), 'fa-terminal': (schedule.type === 'cmd')}"></i>
+            </td>
+            <td>{{ '{{ schedule.name }}' }}</td>
+            <td>{{ '{{ schedule.cron }}' }}</td>
+            <td>{{ '{{ schedule.type === \'task\' ? schedule.task : schedule.cmd }}' }}</td>
+            <td>{{ '{{ schedule.priority }}' }}</td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <div class="block" ng-hide="$ctrl.schedules.length > 0">
+        <i class="fa fa-warning"></i>
+        No schedules.
+    </div>
+
+</div>

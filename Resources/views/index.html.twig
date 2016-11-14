@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="fragment" content="!">
+    <base href="/">
+    <title>Vizzle Services & Tasks</title>
+
+    {% block head %}
+        <style>
+            {{ include('VizzleWebBundle::index.css.twig') }}
+        </style>
+    {% endblock %}
+
+    <link rel="stylesheet" href="{{ asset("bundles/vizzleweb/lib/font-awesome/css/font-awesome.min.css") }}">
+
+</head>
+<body ng-controller="MainController as $ctrl">
+
+<div class="loader">
+    <div class="text">
+        <i class="fa fa-cog fa-spin"></i>
+        Loading, please wait...
+    </div>
+</div>
+
+<div class="app" style="display: none">
+
+    <div class="header">
+        <div class="logo">VIZZLE <span class="text">Services & Tasks</span></div>
+        <div class="info">{{ server }}, Version: {{ version }}</div>
+    </div>
+
+    <div class="warn" ng-if="$root.serversCount == 0"><i class="fa fa-warning"></i>No run servers...</div>
+
+    <div class="main">
+        <div class="sidebar">
+
+            <div class="menu">
+
+                <a ui-sref="servers" ui-sref-active="selected" class="item">
+                    <span class="ico fa fa-server"></span>
+                    <span class="text">Servers</span>
+                    <span class="count" ng-if="$root.serversCount"> {{ '{{ $root.serversCount }}' }}</span>
+                </a>
+
+                <a ui-sref="services" ui-sref-active="selected" class="item">
+                    <span class="ico fa fa-cogs"></span>
+                    <span class="text">Services</span>
+                    <span class="count" ng-if="$root.servicesCount"> {{ '{{ $root.servicesCount }}' }}</span>
+                </a>
+
+                <a ui-sref="tasksQueue" ui-sref-active="selected" class="item">
+                    <span class="ico fa fa-tasks"></span>
+                    <span class="text">Tasks</span>
+                    <span class="count" ng-if="$root.queueCount"> {{ '{{ $root.queueCount }}' }}</span>
+                </a>
+
+                <a ui-sref="schedule" ui-sref-active="selected" class="item">
+                    <span class="ico fa fa-calendar"></span>
+                    <span class="text">Schedule</span>
+                    <span class="count" ng-if="$root.scheduleCount"> {{ '{{ $root.scheduleCount }}' }}</span>
+                </a>
+
+                <a ui-sref="logs" ui-sref-active="selected" class="item">
+                    <span class="ico fa fa-warning"></span>
+                    <span class="text">Logs</span>
+                </a>
+
+            </div>
+
+        </div>
+        <div class="container" ui-view="main"></div>
+    </div>
+
+</div>
+
+<script src="{{ asset('bundles/vizzleweb/lib/requirejs/requirejs.js') }}" data-main="bundles/vizzleweb/js/config.js"></script>
+<script src="{{ asset('bundles/vizzleweb/lib/amcharts/amcharts.js') }}"></script>
+<script src="{{ asset('bundles/vizzleweb/lib/amcharts/serial.js') }}"></script>
+<script src="{{ asset('bundles/vizzleweb/lib/amcharts/themes/light.js') }}"></script>
+<script src="{{ asset('bundles/vizzleweb/lib/amcharts/themes/dark.js') }}"></script>
+
+</body>
+</html>
